@@ -51,7 +51,7 @@ Redis在4.0版本之前一直采用单线程，主要原因有以下几点：
 
 ### 3）主线程和IO线程怎么协作完成请求处理的
 
-![](C:\Users\86180\Desktop\picPick\139.png)
+![](https://github.com/vankykoo/image/blob/main/072.png?raw=true)
 
 四个阶段：
 
@@ -101,7 +101,7 @@ Redis之所以快，主要有以下几个原因：
 
 例如要禁用keys、flushdb、flushall
 
-![](C:\Users\86180\Desktop\picPick\141.png)
+![](https://github.com/vankykoo/image/blob/main/073.png?raw=true)
 
 
 
@@ -212,7 +212,7 @@ Redis的lazy-freeing是一种**延迟释放**或**惰性删除**的机制，当�
 
 在Redis配置文件中可以这样配置：
 
-![](C:\Users\86180\Desktop\picPick\142.png)
+![](https://github.com/vankykoo/image/blob/main/074.png?raw=true)
 
 
 
@@ -345,7 +345,7 @@ public User findUserById2(Integer id){
 
 **解决：**
 
-![](C:\Users\86180\Desktop\picPick\144.png)
+![](https://github.com/vankykoo/image/blob/main/075.png?raw=true)
 
 1 可以把要删除的缓存值或者是要更新的数据库值**暂存到消息队列**中（例如使用Kafka/RabbitMQ等）。
 
@@ -361,13 +361,13 @@ public User findUserById2(Integer id){
 
 
 
-![](C:\Users\86180\Desktop\picPick\145.png)
+![](https://github.com/vankykoo/image/blob/main/076.png?raw=true)
 
 
 
 ### 4）MySQL主从复制
 
-![](C:\Users\86180\Desktop\picPick\146.png)
+![](https://github.com/vankykoo/image/blob/main/077.png?raw=true)
 
 MySQL的主从复制将经过如下步骤：
 
@@ -403,7 +403,7 @@ MySQL的主从复制将经过如下步骤：
 >
 > 总的来说，Canal是一个非常强大的工具，可以帮助我们更好地处理数据库的增量数据订阅和消费。
 
-![](C:\Users\86180\Desktop\picPick\147.png)
+![](https://github.com/vankykoo/image/blob/main/078.png?raw=true)
 
 ![](C:\Users\86180\Desktop\picPick\148.png)
 
@@ -479,11 +479,11 @@ MySQL的主从复制将经过如下步骤：
 
 **改成自己电脑的ip和MySQL端口号**
 
-![](C:\Users\86180\Desktop\picPick\149.png)
+![](https://github.com/vankykoo/image/blob/main/079.png?raw=true)
 
 这里改成自己MySQL用户的账号密码，默认都是canal
 
-![](C:\Users\86180\Desktop\picPick\150.png)
+![](https://github.com/vankykoo/image/blob/main/080.png?raw=true)
 
 
 
@@ -715,7 +715,7 @@ public class RedisCanalClientExample
 
 
 
-![](C:\Users\86180\Desktop\picPick\151.png)
+![](https://github.com/vankykoo/image/blob/main/081.png?raw=true)
 
 
 
@@ -1106,7 +1106,7 @@ Redis Bitmap提供了以下几个常用命令：
 
 ### 3）布隆过滤器结合bitmap实操
 
-![](C:\Users\86180\Desktop\picPick\152.png)
+![](https://github.com/vankykoo/image/blob/main/082.png?raw=true)
 
 
 
@@ -1159,7 +1159,7 @@ Redis Bitmap提供了以下几个常用命令：
 
 #### 谷歌GuavaBloomFilter使用案例
 
-![](C:\Users\86180\Desktop\picPick\153.png)
+![](https://github.com/vankykoo/image/blob/main/083.png?raw=true)
 
 ①引依赖
 
@@ -1206,7 +1206,7 @@ public class GuavaBloomFilterService{
 
 其他应用：
 
-![](C:\Users\86180\Desktop\picPick\154.png)
+![](https://github.com/vankykoo/image/blob/main/084.png?raw=true)
 
 
 
@@ -1227,11 +1227,9 @@ public class GuavaBloomFilterService{
 
 #### 差异失效时间预防缓存击穿问题
 
-![](C:\Users\86180\Desktop\picPick\156.png)
+![](https://github.com/vankykoo/image/blob/main/085.png?raw=true)
 
 
-
-![](C:\Users\86180\Desktop\picPick\155.png)
 
 service
 
@@ -1385,7 +1383,7 @@ public class JHSProductController
 
 
 
-![](C:\Users\86180\Desktop\picPick\157.png)
+![](https://github.com/vankykoo/image/blob/main/086.png?raw=true)
 
 
 
@@ -2111,7 +2109,7 @@ private void renewExpire() {
 > 2. **哨兵模式**：哨兵模式可以用来监控Redis服务器的运行状态，并在主服务器发生故障时自动切换到备用服务器。
 > 3. **集群模式**：通过配置Redis集群，可以实现数据的分片存储，从而提高系统的可用性和性能。
 
-![](C:\Users\86180\Desktop\picPick\158.png)
+![](https://github.com/vankykoo/image/blob/main/087.png?raw=true)
 
 
 
@@ -2141,7 +2139,7 @@ RedLock是Redis的创建者Salvatore Sanfilippo提出的一种分布式锁算法
 
 ### 3）解决方案
 
-使用RedLock算法解决：![](C:\Users\86180\Desktop\picPick\159.png)
+使用RedLock算法解决：![](https://github.com/vankykoo/image/blob/main/088.png?raw=true)
 
 
 
@@ -2546,11 +2544,11 @@ Redis的缓存淘汰策略主要有以下几种：
 
 ### 1）介绍
 
-![](C:\Users\86180\Desktop\picPick\162.png)
+![](https://github.com/vankykoo/image/blob/main/089.png?raw=true)
 
-redis每个对象都是一个redisObject结构；**每个键值对都有一个dictEntry，value既不是直接作为字符串存储，也不是作为SDS动态字符串存储，而是存储在redisObject中**![](C:\Users\86180\Desktop\picPick\167.png)
+redis每个对象都是一个redisObject结构；**每个键值对都有一个dictEntry，value既不是直接作为字符串存储，也不是作为SDS动态字符串存储，而是存储在redisObject中**![](https://github.com/vankykoo/image/blob/main/090.png?raw=true)
 
-![](C:\Users\86180\Desktop\picPick\164.png)
+![](https://github.com/vankykoo/image/blob/main/091.png?raw=true)
 
 
 
@@ -2568,17 +2566,17 @@ redis每个对象都是一个redisObject结构；**每个键值对都有一个di
 
 redisObject + Redis数据类型 + Redis 底层三者之间的关系图：
 
-![](C:\Users\86180\Desktop\picPick\163.png)
+![](https://github.com/vankykoo/image/blob/main/093.png?raw=true)
 
 
 
 ### 2）总览
 
-![](C:\Users\86180\Desktop\picPick\165.png)
+![](https://github.com/vankykoo/image/blob/main/094.png?raw=true)
 
 
 
-![](C:\Users\86180\Desktop\picPick\166.png)
+![](https://github.com/vankykoo/image/blob/main/095.png?raw=true)
 
 
 
@@ -2602,7 +2600,7 @@ redisObject + Redis数据类型 + Redis 底层三者之间的关系图：
 
 
 
-![](C:\Users\86180\Desktop\picPick\169.png)
+![](https://github.com/vankykoo/image/blob/main/096.png?raw=true)
 
 
 
@@ -2626,19 +2624,19 @@ SDS的主要特性包括：
 
 SDS在Redis中被广泛用于各种场景，比如在Redis数据库里面，包含字符串值的键值对在底层都是由SDS实现的。此外，SDS还被用作缓冲区：AOF模块中的AOF缓冲区，以及客户端状态中的输入缓冲区，都是由SDS实现的。
 
-![](C:\Users\86180\Desktop\picPick\168.png)
+![](https://github.com/vankykoo/image/blob/main/097.png?raw=true)
 
 
 
 ####3.总结
 
-![](C:\Users\86180\Desktop\picPick\172.png)
+![](https://github.com/vankykoo/image/blob/main/098.png?raw=true)
 
-![](C:\Users\86180\Desktop\picPick\171.png)
+![](https://github.com/vankykoo/image/blob/main/099.png?raw=true)
 
 底层逻辑图
 
-![](C:\Users\86180\Desktop\picPick\170.png)
+![](https://github.com/vankykoo/image/blob/main/100.png?raw=true)
 
 
 
@@ -2671,7 +2669,7 @@ redis7：listpack + hashtable
 
 ②所有的键值对的键和值的字符串长度都小于等于64byte时用ziplist，反之用hashtable
 
-![](C:\Users\86180\Desktop\picPick\173.png)
+![](https://github.com/vankykoo/image/blob/main/101.png?raw=true)
 
 
 
@@ -2681,7 +2679,7 @@ OBJ_ENCODING_HT 这种编码方式内部才是真正的哈希表结构，或称�
 
 在 Redis内部，从 OBJ_ENCODING_HT类型到底层真正的散列表数据结构是一层层嵌套下去的
 
-![](C:\Users\86180\Desktop\picPick\174.png)
+![](https://github.com/vankykoo/image/blob/main/102.png?raw=true)
 
 
 
@@ -2703,11 +2701,11 @@ Redis的ziplist（压缩列表）是一种特殊的双向链表，由一系列�
 
 总的来说，ziplist是一种内存紧凑、高效的数据结构，被广泛用于Redis中。
 
-![](C:\Users\86180\Desktop\picPick\175.png)
+![](https://github.com/vankykoo/image/blob/main/103.png?raw=true)
 
 链表在内存中，一般是不连续的，遍历相对比较慢，而ziplist可以很好的解决这个问题。如果知道了当前的起始地址，因为entry是连续的，entry后一定是另一个entry，想知道下一个entry的地址，只要将当前的起始地址加上当前entry总长度。如果还想遍历下一个entry，只要继续同样的操作。
 
-![](C:\Users\86180\Desktop\picPick\176.png)
+![](https://github.com/vankykoo/image/blob/main/104.png?raw=true)
 
 
 
@@ -2753,11 +2751,11 @@ Listpack由以下几部分组成：
 
 Listpack中每个节点不再包含前一个节点的长度，而是包含当前节点的长度。这样做的好处是，在插入或删除节点后，不需要更新后续所有节点中保存的前置节点长度值，从而**避免了连锁更新现象**。
 
-![](C:\Users\86180\Desktop\picPick\177.png)
+![](https://github.com/vankykoo/image/blob/main/105.png?raw=true)
 
 
 
-![](C:\Users\86180\Desktop\picPick\178.png)
+![](https://github.com/vankykoo/image/blob/main/106.png?raw=true)
 
 
 
@@ -2769,7 +2767,7 @@ Listpack中每个节点不再包含前一个节点的长度，而是包含当前
 
 list用quicklist来存储，quicklist存储了一个双向链表，每个节点都是一个ziplist
 
-![](C:\Users\86180\Desktop\picPick\179.png)
+![](https://github.com/vankykoo/image/blob/main/107.png?raw=true)
 
 
 
@@ -2819,7 +2817,7 @@ Skip list是一种概率型数据结构，它基于链表的一般概念构建�
 
 总体来说，Skip list是一种允许在有序元素序列中进行高效搜索和插入操作的数据结构。
 
-![](C:\Users\86180\Desktop\picPick\181.png)
+![](https://github.com/vankykoo/image/blob/main/108.png?raw=true)
 
 **Skip list的时间复杂度和空间复杂度如下：**
 
@@ -2852,7 +2850,7 @@ Skip list是一种概率型数据结构，它基于链表的一般概念构建�
 
 Redis利用epoll来实现IO多路复用，将连接信息和事件放到队列中，一次放到文件事件分派器，时间分派器将事件分发给事件处理器。
 
-![](C:\Users\86180\Desktop\picPick\182.png)
+![](https://github.com/vankykoo/image/blob/main/109.png?raw=true)
 
 Redis 是跑在单线程中的，所有的操作都是按照顺序线性执行的，但是**由于读写操作等待用户输入或输出都是阻塞的**，所以 I/O 操作在一般情况下往往不能直接返回，这会导致某一文件的 I/O 阻塞导致整个进程无法对其它客户提供服务，而 I/O 多路复用就是为了解决这个问题而出现所谓 I/O 多路复用机制，就是说通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或写就绪），能够通知程序进行相应的读写操作。这种机制的使用需要 select 、 poll 、 epoll 来配合。**多个连接共用一个阻塞对象，应用程序只需要在一个阻塞对象上等待，无需阻塞等待所有连接。当某条连接有新的数据可以处理时，操作系统通知应用程序，线程从阻塞状态返回，开始进行业务处理。**
 
@@ -2862,7 +2860,7 @@ Redis基于Reactor模式开发了网络事件处理器，这个处理器被称�
 
 因为**文件事件分派器队列的消费是单线程的**，所以Redis才叫单线程模型。
 
-![](C:\Users\86180\Desktop\picPick\183.png)
+![](https://github.com/vankykoo/image/blob/main/110.png?raw=true)
 
 
 

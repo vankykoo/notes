@@ -120,7 +120,7 @@ Redis中String类型的常见命令包括：
 
 set命令参数：
 
-![](C:\Users\86180\Desktop\picPick\129.png)
+![](https://github.com/vankykoo/image/blob/main/063.png?raw=true)
 
 
 
@@ -391,7 +391,7 @@ Redis的数据默认是存储在内存中的，这使得数据的读写速度非
 
 ### 2）RDB
 
-![](C:\Users\86180\Desktop\picPick\130.png)
+![](https://github.com/vankykoo/image/blob/main/064.png?raw=true)
 
 ####1.介绍
 
@@ -477,7 +477,7 @@ RDB持久化的优点是快照文件紧凑，适合备份和全量复制，且�
 
 #### 1.介绍
 
-![](C:\Users\86180\Desktop\picPick\132.png)
+![](https://github.com/vankykoo/image/blob/main/065.png?raw=true)
 
 Redis的AOF（Append Only File）持久化是一种日志形式的持久化方法，它会将每一个写入操作都记录到一个日志文件中。这些操作在服务器启动时可以被重新执行，从而重建原始的数据集。所有写入到AOF文件的命令都是以Redis协议本身的格式保存的。
 
@@ -540,7 +540,7 @@ AOF重写的工作原理是，Redis通过创建一个新的AOF文件来替换现
 
 #### 6.AOF优化配置项详解
 
-![](C:\Users\86180\Desktop\picPick\131.png)
+![](https://github.com/vankykoo/image/blob/main/066.png?raw=true)
 
 
 
@@ -778,7 +778,7 @@ Redis的主从复制是一种数据冗余和备份机制，它允许一个Redis�
 
 ### 2）修改redis主从配置
 
-![](C:\Users\86180\Desktop\picPick\133.png)
+![](https://github.com/vankykoo/image/blob/main/067.png?raw=true)
 
 
 
@@ -860,7 +860,7 @@ Redis哨兵模式的运行流程主要包括以下几个步骤：
 5. **故障转移**：当一个主节点被标记为客观下线后，哨兵会开始故障转移过程。哨兵会从所有的从节点中选举出一个新的主节点，并向所有的从节点发送命令，让它们成为新主节点的从节点。
 6. **通知**：哨兵会向所有的客户端发送消息，通知它们主节点已经更换。
 
-![](C:\Users\86180\Desktop\picPick\134.png)
+![](https://github.com/vankykoo/image/blob/main/068.png?raw=true)
 
 
 
@@ -986,7 +986,7 @@ Redis集群一般不建议超过1000个实例的原因主要有以下几点：
 
 ### 4）redis集群扩容和缩容
 
-![](C:\Users\86180\Desktop\picPick\135.png)
+![](https://github.com/vankykoo/image/blob/main/069.png?raw=true)
 
 
 
@@ -1131,7 +1131,7 @@ Redis缓存击穿是指一个并发访问量比较大的key在某个时间过期
 2. **实时调整**：现场监控哪些数据热门，实时调整key的过期时长
 3. **使用互斥锁（Mutex key）**：当缓存失效时，可以先使用Redis的SETNX命令或其他方法尝试获取一个互斥锁。如果获取锁成功，那么就去加载数据库数据并刷新缓存；如果获取锁失败（说明有其他线程已经在加载数据了），那么就让当前线程稍微等待一下，然后重试整个获取缓存的流程。
 
-![](C:\Users\86180\Desktop\picPick\136.png)
+![](https://github.com/vankykoo/image/blob/main/070.png?raw=true)
 
 > **互斥锁（Mutex）**是一种用于多线程编程中，防止两条线程同时对同一公共资源（比如全局变量）进行读写的机制。每个线程在对资源操作前都尝试先加锁，成功加锁才能操作，操作结束解锁。但应注意：同一时刻，只能有一个线程持有该锁。
 >
@@ -1169,7 +1169,7 @@ Redis分布式锁是一种在分布式系统中实现互斥访问共享资源的
 
 此外，还有一些开源库（如Redlock和Redission）提供了更高级的Redis分布式锁功能，例如阻塞等待、自动续租、公平锁等。
 
-![](C:\Users\86180\Desktop\picPick\137.png)
+![](https://github.com/vankykoo/image/blob/main/071.png?raw=true)
 
 
 
