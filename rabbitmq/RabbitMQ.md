@@ -292,15 +292,15 @@ public class Worker04 {
 
 ①消息生产者发送多条信息
 
-![](C:\Users\86180\Desktop\picPick\207.png)
+![](https://github.com/vankykoo/image/blob/main/011.png?raw=true)
 
 ②由于消费者1处理信息较快，消息很快就被消费，并且mq收到应答（ack
 
 ③消费者2处理信息较慢，在消息没有被消费时（即mq还未收到应答的时候），我们关闭消费者2，此时消息回到队列中，并由消费者1进行处理。
 
-![](C:\Users\86180\Desktop\picPick\208.png)
+![](https://github.com/vankykoo/image/blob/main/012.png?raw=true)
 
-![](C:\Users\86180\Desktop\picPick\209.png)
+![](https://github.com/vankykoo/image/blob/main/013.png?raw=true)
 
 
 
@@ -526,7 +526,7 @@ public static void confirmAsync() throws Exception{
 
 ## 七、交换机
 
-![](C:\Users\86180\Desktop\picPick\210.png)
+![](https://github.com/vankykoo/image/blob/main/014.png?raw=true)
 
 ### 1）概念
 
@@ -672,7 +672,7 @@ public class DirectReceiveLogs01 {
 
 总的来说，主题交换机提供了一种灵活的方式来将生产者的消息路由到一个或多个队列，特别适合于多租户应用、日志记录以及动态路由等场景。
 
-![](C:\Users\86180\Desktop\picPick\211.png)
+![](https://github.com/vankykoo/image/blob/main/015.png?raw=true)
 
 
 
@@ -774,7 +774,7 @@ RabbitMQ的死信队列（Dead-Letter-Exchange，简称DLX）是一种特殊的�
 
 总的来说，死信队列是一种有效的处理无法正常消费的消息的机制。
 
-![](C:\Users\86180\Desktop\picPick\211.png)
+![](https://github.com/vankykoo/image/blob/main/016.png?raw=true)
 
 
 
@@ -980,7 +980,7 @@ RabbitMQ的延迟队列是一种特殊的队列，可以用来处理需要在某
 
 
 
-![](C:\Users\86180\Desktop\picPick\212.png)
+![](https://github.com/vankykoo/image/blob/main/017.png?raw=true)
 
 
 
@@ -1220,7 +1220,7 @@ rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 
 
-![](C:\Users\86180\Desktop\picPick\214.png)
+![](https://github.com/vankykoo/image/blob/main/018.png?raw=true)
 
 
 
@@ -1446,7 +1446,7 @@ public class ConfirmConsumer {
 
 ### 3）备份交换机
 
-![](C:\Users\86180\Desktop\picPick\215.png)
+![](https://github.com/vankykoo/image/blob/main/019.png?raw=true)
 
 配置类
 
@@ -1709,7 +1709,7 @@ RabbitMQ的镜像队列是一种高可用性解决方案，它通过将一个队
 
 配置方法：
 
-![](C:\Users\86180\Desktop\picPick\218.png)
+![](https://github.com/vankykoo/image/blob/main/020.png?raw=true)
 
 
 
@@ -1767,7 +1767,7 @@ Federation插件基于AMQP 0-9-1协议在不同的Broker之间进行通信，并
 
 以上就是RabbitMQ Federation交换机的基本概念和使用方式。在进行操作之前，请确保你已经对相关知识有了充分的了解，并且已经做好了数据备份。
 
-![](C:\Users\86180\Desktop\picPick\223.png)
+![](https://github.com/vankykoo/image/blob/main/021.png?raw=true)
 
 
 
@@ -1779,11 +1779,11 @@ Federation插件基于AMQP 0-9-1协议在不同的Broker之间进行通信，并
 2. **开启Federation插件**：在每台机器上开启federation相关插件。你可以使用命令`rabbitmq-plugins enable rabbitmq_federation`和`rabbitmq-plugins enable rabbitmq_federation_management`来开启插件。
 3. **创建交换器和队列**：在一台机器上新建一个队列和一个交换器，并将他们之间进行绑定。你可以使用命令行或者管理后台自行新建。
 4. **配置Federation**：
-5. 先添加upstream![](C:\Users\86180\Desktop\picPick\219.png)
+5. 先添加upstream![](https://github.com/vankykoo/image/blob/main/022.png?raw=true)
 
 然后添加policy
 
-![](C:\Users\86180\Desktop\picPick\220.png)
+![](https://github.com/vankykoo/image/blob/main/023.png?raw=true)
 
 
 
@@ -1803,7 +1803,7 @@ Federation插件基于AMQP 0-9-1协议在不同的Broker之间进行通信，并
 
 在使用Federation队列时，你需要配置两个东西：一个或多个定义了到其他节点的联邦连接的上游，以及一个或多个选择交换器/队列并将单个上游或上游集应用于这些对象的策略。
 
-以上就是RabbitMQ Federation队列的基本概念和使用方式。在进行操作之前，请确保你已经对相关知识有了充分的了解，并且已经做好了数据备份。![](C:\Users\86180\Desktop\picPick\224.png)
+以上就是RabbitMQ Federation队列的基本概念和使用方式。在进行操作之前，请确保你已经对相关知识有了充分的了解，并且已经做好了数据备份。![](https://github.com/vankykoo/image/blob/main/024.png?raw=true)
 
 
 
@@ -1821,7 +1821,7 @@ Federation插件基于AMQP 0-9-1协议在不同的Broker之间进行通信，并
 
    先添加upstream，方法和上面一样
 
-   再添加policy![](C:\Users\86180\Desktop\picPick\221.png)
+   再添加policy![](https://github.com/vankykoo/image/blob/main/025.png?raw=true)
 
 5. **验证搭建结果**：最后，你可以在RabbitMQ的管理界面中查看Federation Status来验证是否搭建成功。
 
@@ -1837,7 +1837,7 @@ RabbitMQ的Shovel插件是一种允许你配置多个shovel（传输工作器）
 
 1. **开启Shovel插件**：在每台机器上开启federation相关插件。你可以使用命令`rabbitmq-plugins enable rabbitmq_shovel`和`rabbitmq-plugins enable rabbitmq_shovel_management`来开启插件。
 2. **创建交换器和队列**：在一台机器上新建一个队列和一个交换器，并将他们之间进行绑定。你可以使用命令行或者管理后台自行新建。
-3. **配置Shovel**：![img](file:///C:/Users/86180/Desktop/picPick/222.png?lastModify=1698155852)
+3. **配置Shovel**：![img](https://github.com/vankykoo/image/blob/main/026.png?raw=true)
 4. **验证搭建结果**：最后，你可以在RabbitMQ的管理界面中查看Federation Status来验证是否搭建成功[1](https://blog.csdn.net/sanmi8276/article/details/114628605)。
 
 以上就是使用RabbitMQ的Shovel插件的基本步骤。请注意，在进行操作之前，请确保你已经对相关知识有了充分的了解，并且已经做好了数据备份。
