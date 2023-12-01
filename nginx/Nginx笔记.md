@@ -63,7 +63,7 @@ wantedBy=multi-user.target
 
 ### 1）基本原理图
 
-![](C:\Users\86180\Desktop\picPick\226.png)
+![](https://github.com/vankykoo/image/blob/main/001.png?raw=true)
 
 
 
@@ -264,7 +264,7 @@ upstream backend-server {
 
 ①购买自己的域名，然后解析：
 
-![](C:\Users\86180\Desktop\picPick\227.png)
+![](https://github.com/vankykoo/image/blob/main/002.png?raw=true)
 
 ②修改nginx配置
 
@@ -754,7 +754,7 @@ Nginx中的`rewrite`指令支持多种标志（flags），这些标志用于控�
 
 ### 6）负载均衡 + URLRewrite
 
-![](C:\Users\86180\Desktop\picPick\228.png)
+![](https://github.com/vankykoo/image/blob/main/003.png?raw=true)
 
 要在Nginx中实现URL重写和负载均衡，你需要编辑Nginx的配置文件并配置`rewrite`指令以及`upstream`块。以下是一个示例配置，演示如何同时实现URL重写和负载均衡：
 
@@ -1055,7 +1055,7 @@ HTTP（Hypertext Transfer Protocol）是一种用于在Web上传输数据的协�
 
 
 
-![](C:\Users\86180\Desktop\picPick\229.png)
+![](https://github.com/vankykoo/image/blob/main/004.png?raw=true)
 
 
 
@@ -1085,7 +1085,7 @@ HTTP（Hypertext Transfer Protocol）是一种用于在Web上传输数据的协�
 
 综合而言，对称加密在速度和效率方面具有优势，适用于大量数据的加密，但需要解决密钥分发问题。非对称加密提供更好的安全性和身份验证功能，但速度较慢，主要用于密钥交换和数字签名等场景。通常，非对称加密用于安全地协商对称加密密钥，以便在通信中使用对称加密来加密实际数据。
 
-![](C:\Users\86180\Desktop\picPick\230.png)
+![](https://github.com/vankykoo/image/blob/main/005.png?raw=true)
 
 
 
@@ -1125,7 +1125,7 @@ CA机构的关键原则和流程：
 
 通过这个流程和原理，CA机构帮助确保了互联网上数据的保密性、完整性和身份验证，从而维护了互联网的安全性。如果CA机构受到攻击或存在安全漏洞，那么整个PKI系统的安全性可能会受到威胁。因此，CA机构需要采取各种安全措施来保护其私钥和证书颁发流程。
 
-![](C:\Users\86180\Desktop\picPick\231.png)
+![](https://github.com/vankykoo/image/blob/main/006.png?raw=true)
 
 
 

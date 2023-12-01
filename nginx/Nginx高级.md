@@ -940,7 +940,7 @@ Tengine是一个基于Nginx的Web服务器和反向代理服务器，它扩展�
 
 ####1.介绍
 
-![](C:\Users\86180\Desktop\picPick\235.png)
+![](https://github.com/vankykoo/image/blob/main/007.png?raw=true)
 
 
 
@@ -1179,7 +1179,7 @@ rsync -avz /path/to/source/ user@remote_server:/path/to/destination/
 
 rsync在许多情况下是一个非常有用的工具，特别是在需要在不同计算机之间同步文件和目录时。它提供了高效、灵活和安全的文件传输和同步机制。
 
-![](C:\Users\86180\Desktop\picPick\236.png)
+![](https://github.com/vankykoo/image/blob/main/008.png?raw=true)
 
 
 
@@ -1825,7 +1825,7 @@ Nginx中的`proxy_cache`模块允许您配置用于缓存反向代理响应的�
 
 ### 16）多级缓存总结
 
-![](C:\Users\86180\Desktop\picPick\238.png)
+![](https://github.com/vankykoo/image/blob/main/009.png?raw=true)
 
 
 
@@ -2025,7 +2025,7 @@ server {
 
 #### 3.nginx+memcached
 
-![](C:\Users\86180\Desktop\picPick\239.png)
+![](https://github.com/vankykoo/image/blob/main/010.png?raw=true)
 
 ```nginx
 server {
