@@ -11,13 +11,13 @@ Ubuntu（乌班图）、RedHat（红帽）、CentOS、Debain（蝶变）、Fedor
 
 ### 2）VM和Linux的关系
 
-![](C:\Users\86180\Desktop\picPick\004.png)
+![](https://github.com/vankykoo/image/blob/main/027.png?raw=true)
 
 
 
 ### 3）网络连接的三种方式
 
-![](C:\Users\86180\Desktop\picPick\007.png)
+![](https://github.com/vankykoo/image/blob/main/028.png?raw=true)
 
 
 
@@ -52,13 +52,13 @@ Ubuntu（乌班图）、RedHat（红帽）、CentOS、Debain（蝶变）、Fedor
 
 #### 1、安装
 
-![](C:\Users\86180\Desktop\picPick\008.png)
+![](https://github.com/vankykoo/image/blob/main/029.png?raw=true)
 
 
 
 #### 2、设置共享文件夹
 
-![](C:\Users\86180\Desktop\picPick\009.png)
+![](https://github.com/vankykoo/image/blob/main/030.png?raw=true)
 
 ※注意：
 
@@ -70,7 +70,7 @@ Ubuntu（乌班图）、RedHat（红帽）、CentOS、Debain（蝶变）、Fedor
 
 linux的文件系统是采用级层式的树状目录结构，在此结构中的最上层是根目录“/”，然后在此目录下再创建其他的目录。
 
-![](C:\Users\86180\Desktop\picPick\010.png)
+![](https://github.com/vankykoo/image/blob/main/031.png?raw=true)
 
 1. /bin【常用】(/usr/bin、/usr/local/bin)：是Binary的缩写，这个目录存放着最经常用的命令。
 2. /sbin（/usr/sbin、/usr/local/sbin）：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。
@@ -99,15 +99,15 @@ linux的文件系统是采用级层式的树状目录结构，在此结构中的
 
 ### 9)Xshell和Xftp
 
-![](C:\Users\86180\Desktop\picPick\017.png)
+![](https://github.com/vankykoo/image/blob/main/032.png?raw=true)
 
 
 
-![](C:\Users\86180\Desktop\picPick\016.png)
+![](https://github.com/vankykoo/image/blob/main/033.png?raw=true)
 
 
 
-![](C:\Users\86180\Desktop\picPick\018.png)
+![](https://github.com/vankykoo/image/blob/main/034.png?raw=true)
 
 
 
@@ -135,7 +135,7 @@ Vim具有程序编辑的能力，可以看做是Vi的增强版本，可以主动
 
 #### 2、vi和vim各个模式的切换图
 
-![](C:\Users\86180\Desktop\picPick\021.png)
+![](https://github.com/vankykoo/image/blob/main/035.png?raw=true)
 
 
 
@@ -149,7 +149,7 @@ Vim具有程序编辑的能力，可以看做是Vi的增强版本，可以主动
 6. <u>在一般模式下</u>，**撤销操作**为`u`
 7. <u>在一般模式下</u>，**将光标移动到20行**---->先输入`20`，在输入 `shift + g`
 
-![](C:\Users\86180\Desktop\picPick\023.png)
+![](https://github.com/vankykoo/image/blob/main/036.png?raw=true)
 
 
 
@@ -407,7 +407,7 @@ Linux系统是一个多用户多任务的操作系统，任何一个要使用系
 
 more指令时一个基于vi编辑器的文本过滤器，它**以全屏幕的方式按页显示文本文件的内容**。more指令中内置了若干快捷键。
 
-![](C:\Users\86180\Desktop\picPick\024.png)
+![](https://github.com/vankykoo/image/blob/main/037.png?raw=true)
 
 
 
@@ -419,7 +419,7 @@ less指令用来分屏查看文件内容，它的功能与more指令类似，但
 
 * 快捷键
 
-  ![](C:\Users\86180\Desktop\picPick\025.png)
+  ![](https://github.com/vankykoo/image/blob/main/038.png?raw=true)
 
 
 
@@ -513,7 +513,7 @@ less指令用来分屏查看文件内容，它的功能与more指令类似，但
 
   * 查找内容说明：
 
-    ![](C:\Users\86180\Desktop\picPick\026.png)
+    ![](https://github.com/vankykoo/image/blob/main/039.png?raw=true)
 
   * 查找/home下hello.txt文件：`find /home -name hello.txt`
 
@@ -595,7 +595,7 @@ locate指令**可以快速定位文件路径**，locate指令利用事先建立�
 
   * 选项：
 
-    ![](C:\Users\86180\Desktop\picPick\027.png)
+    ![](https://github.com/vankykoo/image/blob/main/040.png?raw=true)
 
   * 例子：
 
@@ -757,21 +757,21 @@ crontab 进行定时任务的设置
 
   * 常用选项：
 
-    ![](C:\Users\86180\Desktop\picPick\028.png)
+    ![](https://github.com/vankykoo/image/blob/main/041.png?raw=true)
 
   * 例子：`*/1 * * * * ls -l /etc/ > /tmp/to.txt`
 
     意思是每小时的每分钟执行`ls -l /etc/ > /tmp/to.txt`命令
 
-    ![](C:\Users\86180\Desktop\picPick\029.png)
+    ![](https://github.com/vankykoo/image/blob/main/042.png?raw=true)
 
   * 特殊符号说明：
 
-    ![](C:\Users\86180\Desktop\picPick\030.png)
+    ![](https://github.com/vankykoo/image/blob/main/043.png?raw=true)
 
   * 示例：
 
-    ![](C:\Users\86180\Desktop\picPick\031.png)
+    ![](https://github.com/vankykoo/image/blob/main/044.png?raw=true)
 
 
 
@@ -790,11 +790,11 @@ crontab 进行定时任务的设置
 
   * at常用选项：
 
-    ![](C:\Users\86180\Desktop\picPick\032.png)
+    ![](https://github.com/vankykoo/image/blob/main/045.png?raw=true)
 
   * at时间定义
 
-    ![](C:\Users\86180\Desktop\picPick\033.png)
+    ![](https://github.com/vankykoo/image/blob/main/046.png?raw=true)
 
 
 
@@ -814,7 +814,7 @@ crontab 进行定时任务的设置
 
 Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 
-![](C:\Users\86180\Desktop\picPick\035.png)
+![](https://github.com/vankykoo/image/blob/main/047.png?raw=true)
 
 
 
@@ -830,7 +830,7 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 
 在【虚拟机】菜单的设置中，添加硬盘，重启设备。
 
-![](C:\Users\86180\Desktop\picPick\036.png)
+![](https://github.com/vankykoo/image/blob/main/048.png?raw=true)
 
 
 
@@ -945,7 +945,7 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 
 ### 1）NAT网络配置原理图
 
-![](C:\Users\86180\Desktop\picPick\037.png)
+![](https://github.com/vankykoo/image/blob/main/049.png?raw=true)
 
 > **NAT（Network Address Translator，网络地址转换）**是一种用于在本地网络中使用私有地址，在连接互联网时转而使用全局 IP 地址的技术。NAT实际上是为解决 IPv4地址短缺而开发的技术。
 >
@@ -981,7 +981,7 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 
 * 编辑：`vim /etc/sysconfig/network-scripts/ifcfg-ens33`
 
-  ![](C:\Users\86180\Desktop\picPick\038.png)
+  ![](https://github.com/vankykoo/image/blob/main/050.png?raw=true)
 
 * 然后使用指令 `service network restart`或者`reboot`重置
 
@@ -991,7 +991,7 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 
 #### 1、Windows
 
-在C:\Windows\System32\drivers\etc\hosts中添加映射即可。![](C:\Users\86180\Desktop\picPick\039.png)
+在C:\Windows\System32\drivers\etc\hosts中添加映射即可。![](https://github.com/vankykoo/image/blob/main/051.png?raw=true)
 
 
 
@@ -999,7 +999,7 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 
 在/etc/hosts文件中指定
 
-![](C:\Users\86180\Desktop\picPick\040.png)
+![](https://github.com/vankykoo/image/blob/main/052.png?raw=true)
 
 
 
@@ -1040,7 +1040,7 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 * 如果本地解析器缓存没有找到对应映射，检查系统中hosts文件中有没有配置对应的域名IP映射，如果有，则完成解析并返回。
 * 如果本地DNS解析器缓存和hosts文件中均没有找到对应的IP，则到域名服务DNS进行解析域。
 
-![](C:\Users\86180\Desktop\picPick\041.png)
+![](https://github.com/vankykoo/image/blob/main/053.png?raw=true)
 
 > **Linux系统的开机过程**可以分为以下几个阶段：
 >
@@ -1053,124 +1053,3 @@ Linux硬盘分IDE硬盘和SCSI硬盘，目前基本上是SCSI硬盘。
 > 7. **用户登录系统**：最后，Linux 就会启动终端机或者是 X Window 来等待使用者登陆。
 >
 > 这个过程涉及到底层硬件设备的初始化、操作系统内核的加载和启动、系统服务和应用程序的启动等多个步骤。每个步骤都有其特定的目标和任务，共同构成了Linux系统从开机到可供用户使用的完整过程。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

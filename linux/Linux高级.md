@@ -14,7 +14,7 @@
 
 ### 2）常用系统日志
 
-![](C:\Users\86180\Desktop\picPick\053.png)
+![](https://github.com/vankykoo/image/blob/main/054.png?raw=true)
 
 
 
@@ -40,9 +40,9 @@ CentOS7.6日志服务是rsyslogd，CentOS6.x日志服务是syslogd。rsyslogd功
 
 其中第一个\*代表日志类型，第二个\*代表日志级别。
 
-![](C:\Users\86180\Desktop\picPick\054.png)
+![](https://github.com/vankykoo/image/blob/main/055.png?raw=true)
 
-![](C:\Users\86180\Desktop\picPick\055.png)
+![](https://github.com/vankykoo/image/blob/main/056.png?raw=true)
 
 
 
@@ -94,7 +94,7 @@ CentOS7.6日志服务是rsyslogd，CentOS6.x日志服务是syslogd。rsyslogd功
 
 ### 3）配置文件
 
-![](C:\Users\86180\Desktop\picPick\056.png)
+![](https://github.com/vankykoo/image/blob/main/057.png?raw=true)
 
 
 
@@ -119,7 +119,7 @@ CentOS7.6日志服务是rsyslogd，CentOS6.x日志服务是syslogd。rsyslogd功
 - `maxage count`：保留多少天的日志文件。例如，5表示保留最近的5天的日志文件，其余的全部删除。如果日志文件按天转储，则rotate与maxage基本上是一样的[](https://blog.csdn.net/xiaojin21cen/article/details/122309230)。
 - `missingok`：如果日志文件不存在，logrotate将不会产生错误消息。
 
-![](C:\Users\86180\Desktop\picPick\057.png)
+![](https://github.com/vankykoo/image/blob/main/058.png?raw=true)
 
 
 
@@ -131,7 +131,7 @@ CentOS7.6日志服务是rsyslogd，CentOS6.x日志服务是syslogd。rsyslogd功
 
 
 
-![](C:\Users\86180\Desktop\picPick\058.png)
+![](https://github.com/vankykoo/image/blob/main/059.png?raw=true)
 
 
 
@@ -151,7 +151,7 @@ CentOS7.6日志服务是rsyslogd，CentOS6.x日志服务是syslogd。rsyslogd功
 
 * 常用指令
 
-  ![](C:\Users\86180\Desktop\picPick\059.png)
+  ![](https://github.com/vankykoo/image/blob/main/060.png?raw=true)
 
 
 
@@ -205,7 +205,7 @@ Linux的备份和恢复有两种方式：
 
 * 语法说明
 
-  ![](C:\Users\86180\Desktop\picPick\061.png)
+  ![](https://github.com/vankykoo/image/blob/main/061.png?raw=true)
 
   例子：将/boot分区所有内容备份到/opt/boot.bak0.bz2文件中，备份层级为0，
 
