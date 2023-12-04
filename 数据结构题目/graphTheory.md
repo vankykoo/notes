@@ -285,10 +285,89 @@ class Solution {
         }
     }
 }
-
 ```
 
 
+
+## 五、岛屿数量----广搜版
+
+### 思路
+
+遍历grid数组，如果有陆地没有被走过（visited == false)  的，进行广搜，然后岛屿数量加一。
+
+
+
+### 代码
+
+```java
+class Solution {
+    // 用于标记是否访问过某个位置
+    boolean[][] visited;
+    
+    // 方向数组，表示上、右、下、左四个方向
+    int[][] dir = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
+    // 主函数，计算岛屿数量
+    public int numIslands(char[][] grid) {
+        // 初始化岛屿数量为0
+        int result = 0;
+
+        // 初始化visited数组，标记是否访问过每个位置
+        visited = new boolean[grid.length][grid[0].length];
+
+        // 遍历整个二维数组
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                // 如果当前位置未被访问且为岛屿（'1'表示岛屿）
+                if (!visited[i][j] && grid[i][j] == '1') {
+                    // 进行广度优先搜索，并将岛屿数量增加
+                    bfs(grid, i, j);
+                    result++;
+                }
+            }
+        }
+
+        // 返回最终的岛屿数量
+        return result;
+    }
+
+    // 辅助函数，实现广度优先搜索
+    public void bfs(char[][] grid, int x, int y) {
+        // 使用队列存储待访问的位置
+        Queue<int[]> queue = new LinkedList<>();
+        
+        // 将当前位置加入队列，并标记为已访问
+        queue.add(new int[]{x, y});
+        visited[x][y] = true;
+
+        // 遍历队列中的位置
+        while (!queue.isEmpty()) {
+            // 取出队列头部的位置
+            int[] cur = queue.poll();
+            int curX = cur[0];
+            int curY = cur[1];
+
+            // 遍历当前位置的上、右、下、左四个方向
+            for (int i = 0; i < 4; i++) {
+                int nextX = curX + dir[i][0];
+                int nextY = curY + dir[i][1];
+
+                // 检查下一个位置是否越界
+                if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) {
+                    continue;
+                }
+
+                // 如果下一个位置未被访问且为岛屿，加入队列并标记为已访问
+                if (!visited[nextX][nextY] && grid[nextX][nextY] == '1') {
+                    queue.add(new int[]{nextX, nextY});
+                    visited[nextX][nextY] = true;
+                }
+            }
+        }
+    }
+}
+
+```
 
 
 
