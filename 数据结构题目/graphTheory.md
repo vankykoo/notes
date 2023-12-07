@@ -373,13 +373,306 @@ class Solution {
 
 
 
+## 六、岛屿的最大面积
+
+### 题目
+
+![114.png (850×1443) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/114.png)
+
+
+
+### 思路
+
+使用深搜广搜都可以，在每次搜索的时候记录岛屿数量，取最大数量即可。
+
+
+
+### 代码
+
+```java
+class Solution {
+    // 记录已访问过的位置
+    boolean[][] checked;
+    // 定义四个方向的偏移量
+    int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    //记录每次搜索的岛屿的面积
+    int path = 0;
+
+    public int maxAreaOfIsland(int[][] grid) {
+        // 初始化已访问数组
+        checked = new boolean[grid.length][grid[0].length];
+        // 记录最大岛屿面积
+        int result = 0;
+
+        // 遍历整个二维数组
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                path = 0;
+                // 如果当前位置未访问且是陆地，进行搜索
+                if (!checked[i][j] && grid[i][j] == 1) {
+                    dfs(grid,i,j);
+                    result = Math.max(result, path);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // 深度优先搜索
+    public void dfs(int[][] grid, int x, int y) {
+        // 终止条件
+        if (checked[x][y] || grid[x][y] == 0) {
+            return;
+        }
+
+        // 标记当前位置为已访问
+        checked[x][y] = true;
+        path++;
+        // 遍历当前位置的四个相邻位置
+        for (int i = 0; i < 4; i++) {
+            int nextX = x + dir[i][0];
+            int nextY = y + dir[i][1];
+
+            // 检查相邻位置是否合法，如果越界则继续下一次循环
+            if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) {
+                continue;
+            }
+
+            // 递归调用深度优先搜索
+            dfs(grid, nextX, nextY);
+        }
+    }
+}
+```
 
 
 
 
 
+## 七、飞地的数量
+
+### 题目
+
+![001.png (839×1445) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/001.png)
+
+### 思路
+
+* 我的思路：
+  * 深搜逻辑
+  * 如果是边界岛屿，就进行标记，path 赋值为 -1，且要记录已访问过的位置
+  * 如果不是边界岛屿，就一直增加岛屿面积
+  * 最后把飞地面积加起来
+* 答案思路，深搜是把边界岛屿都覆盖，都变成水地，最后在遍历一遍看不是水地的面积
+
+### 代码
+
+我的代码
+
+```java
+class Solution {
+    // 记录已访问过的位置
+    boolean[][] checked;
+    // 定义四个方向的偏移量
+    int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    //记录每次搜索的岛屿的面积
+    int path = 0;
+
+    public int numEnclaves(int[][] grid) {
+        checked = new boolean[grid.length][grid[0].length];
+        int res = 0;
+
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                if (!checked[i][j] && grid[i][j] == 1){
+                    path = 0;
+                    dfs(grid,i,j);
+                    if(path != -1){
+                        res += path;
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+
+    // 深度优先搜索
+    public void dfs(int[][] grid, int x, int y) {
+        // 终止条件
+        if (checked[x][y] || grid[x][y] == 0) {
+            return;
+        }
+      
+		//如果是边界岛屿，标记
+        if(x == 0 || y == 0 || x == grid.length - 1 || y == grid[0].length - 1){
+            path = -1;
+        }
+
+        // 标记当前位置为已访问
+        checked[x][y] = true;
+        //如果不是边界岛屿，增加面积
+        if(path != -1){
+            path++;
+        }
+        // 遍历当前位置的四个相邻位置
+        for (int i = 0; i < 4; i++) {
+            int nextX = x + dir[i][0];
+            int nextY = y + dir[i][1];
+
+            // 检查相邻位置是否合法，如果越界则继续下一次循环
+            if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) {
+                continue;
+            }
+
+            // 递归调用深度优先搜索
+            dfs(grid, nextX, nextY);
+        }
+    }
+}
+```
 
 
+
+答案代码
+
+```java
+class Solution {
+    public int numEnclaves(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        // 将与边界相连的陆地进行 DFS，并标记为 0
+        for (int i = 0; i < rows; i++) {
+            if (grid[i][0] == 1) {
+                dfs(grid, i, 0);
+            }
+            if (grid[i][cols - 1] == 1) {
+                dfs(grid, i, cols - 1);
+            }
+        }
+
+        for (int j = 0; j < cols; j++) {
+            if (grid[0][j] == 1) {
+                dfs(grid, 0, j);
+            }
+            if (grid[rows - 1][j] == 1) {
+                dfs(grid, rows - 1, j);
+            }
+        }
+
+        // 统计剩余的陆地数量
+        int result = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 1) {
+                    result++;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    // DFS 遍历相连的陆地
+    private void dfs(int[][] grid, int x, int y) {
+        if (x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] == 0) {
+            return;
+        }
+
+        grid[x][y] = 0; // 标记为已访问
+
+        // 遍历相邻的陆地
+        dfs(grid, x - 1, y);
+        dfs(grid, x + 1, y);
+        dfs(grid, x, y - 1);
+        dfs(grid, x, y + 1);
+    }
+}
+```
+
+
+
+## 八、被围绕的区域
+
+### 题目
+
+![002.png (843×1143) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/002.png)
+
+### 思路
+
+和上一题的思路几乎一致，先把边界岛屿赋值为‘Y’，最后把不是‘Y’的赋值为‘X’，把'Y'赋值为‘O'即可。
+
+###代码
+
+```java
+class Solution {
+    int m,n;  // m为行数，n为列数
+    boolean[][] checked;  // 判断该位置是否访问过，避免重复访问
+    int[][] dir = {{-1,0},{1,0},{0,1},{0,-1}};  // 一个方向数组，表示向上、向下、向左、向右四个方向
+
+    public void solve(char[][] board) {
+        m = board.length;  // 获得矩阵行数
+        n = board[0].length;  // 获得矩阵列数
+        checked = new boolean[m][n];  // 初设每个位置都没有访问过
+
+        // 遍历每一行，将边缘的'O'和与其连通的'O'都变为'Y'
+        for(int i = 0; i < m; i++){
+            if(board[i][0] == 'O' && checked[i][0] == false){  // 如果最左边是'O'且没有访问过
+                dfs(board, i, 0);  // 用DFS将与其连通的'O'都变为'Y'
+            }
+
+            if(board[i][n - 1] == 'O' && checked[i][n-1] == false){  // 如果最右边是'O'且没有访问过
+                dfs(board, i, n-1);  // 用DFS将与其连通的'O'都变为'Y'
+            }
+        }
+
+        // 遍历每一列，将边缘的'O'和与其连通的'O'都变为'Y'
+        for(int i = 0; i < n; i++){
+            if(board[0][i] == 'O' && checked[0][i] == false){  // 如果最上边是'O'且没有访问过
+                dfs(board, 0, i);  // 用DFS将与其连通的'O'都变为'Y'
+            }
+
+            if(board[m-1][i] == 'O' && checked[m-1][i] == false){  // 如果最下边是'O'且没有访问过
+                dfs(board, m-1,i);  // 用DFS将与其连通的'O'都变为'Y'
+            }
+        }
+
+        // 遍历整个矩阵，把'O'变为'X'，把'Y'变为'O'
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(board[i][j] == 'Y'){  // 如果是'Y'，则变回'O'
+                    board[i][j] = 'O';
+                }else{  // 其他情况，即'O' 和 'X'，都变为'X'
+                    board[i][j] = 'X';
+                }
+            }
+        }
+
+    }
+
+    // 使用深度优先搜索将与边缘'O'连通的'O'变为'Y'
+    public void dfs(char[][] board,int x, int y){
+        if(board[x][y] == 'X' || checked[x][y] == true){  // 如果是'X'或者已经访问过，则直接返回
+            return;
+        }
+
+        board[x][y] = 'Y';  // 将'O'变为'Y'
+        checked[x][y] = true;  // 标记该位置已经访问过
+
+        // 对该位置的四个方向进行深度优先搜索
+        for(int i = 0; i < 4; i++){
+            int nextX = x + dir[i][0];
+            int nextY = y + dir[i][1];
+
+            // 如果新的位置在矩阵范围内，则继续搜索
+            if(nextX >= 0 && nextX < m && nextY >= 0 && nextY < n){
+                dfs(board, nextX, nextY);
+            }
+        }
+    }
+}
+```
 
 
 
