@@ -678,13 +678,164 @@ class Solution {
 
 
 
+## 九、太平洋大西洋水流问题
+
+### 题目
+
+![004.png (852×1767) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/004.png)
+
+### 思路
+
+首先通过两个DFS从海岸线流入陆地，标记可以流到哪些格子（DFS是正向思维，从海岸线流入陆地）。
+
+然后在遍历地图的时候，只有都被标记的格子才放入res。
+
+
+
+### 代码
+
+```java
+class Solution {
+    int[][] dir = {{-1,0},{1,0},{0,1},{0,-1}}; // 这是四个方向的向量，表示向上、向下、向左和向右移动
+    boolean[][][] checked; // 这是一个三维布尔数组，记录每个位置是否可以流向太平洋（index 0）和大西洋（index 1）
+    List<List<Integer>> res = new ArrayList<>(); // 这是最后的结果列表，记录可以同时流向太平洋和大西洋的位置
+    int m,n; // m和n分别表示矩阵的行数和列数
+
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        m = heights.length; // 初始化行数
+        n = heights[0].length; // 初始化列数
+        checked = new boolean[m][n][2]; // 初始化记录数组
+
+        for (int i = 0; i < m; i++) {
+            // 假设所有边界的位置都可以流向相应海洋，对于左右边界，从大西洋边界开始向陆地做DFS，从太平洋边界开始向陆地做DFS。
+            checked[i][n - 1][0] = true;
+            checked[i][0][1] = true;
+            dfs(heights, i, n - 1, 0); 
+            dfs(heights, i, 0, 1);
+        }
+
+        for (int i = 0; i < n; i++) {
+            // 假设所有边界的位置都可以流向相应海洋，对于上下边界，从大西洋边界开始向陆地做DFS，从太平洋边界开始向陆地做DFS。
+            checked[m - 1][i][0] = true;
+            checked[0][i][1] = true;
+            dfs(heights, m - 1, i, 0);
+            dfs(heights, 0, i, 1);
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // 如果该位置即可以到太平洋又可以到大西洋，就放入答案数组
+                if (checked[i][j][0] && checked[i][j][1])
+                    res.add(List.of(i, j));
+            }
+        }
+
+        return res;
+    }
+
+    public void dfs(int[][] heights, int x, int y, int ocean){
+        for (int i = 0; i < 4; i++) {
+            int nextX = x + dir[i][0];
+            int nextY = y + dir[i][1];
+
+            // 如果新位置越界或者高度低于当前位置，或者新位置已经被访问过，就跳过。否则就对新位置做DFS。
+            if (nextX < 0 || nextX >= m || nextY < 0 || nextY >= n)
+                continue;
+            if (heights[nextX][nextY] < heights[x][y] || checked[nextX][nextY][ocean]) continue;
+            checked[nextX][nextY][ocean] = true;
+            dfs(heights, nextX, nextY, ocean);
+        }
+    }
+}
+```
 
 
 
 
 
+##十、最大人工岛
+
+###题目
+
+![005.png (860×1270) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/005.png)
 
 
+
+### 思路
+
+* 暴力解法
+  * 每次遇到零就要计算旁边的岛的面积。这样会有很多重复的计算，超时！
+* 给每个岛标上号，防止重复计算。
+  * 第一次遍历时先找岛，然后给每个岛表上号，并记录每个岛的面积，存在map中。
+  * 第二次遍历就是找零，让零变成一，然后计算可以连起来的最大的岛屿是多少，且可以直接根据遍历直接获得岛屿的面积，不用重复计算。
+
+
+
+###代码
+
+```java
+class Solution {
+    //定义一个二维数组，表示四个方向的偏移量
+    private static final int[][] position = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+
+    //使用深度优先搜索算法，计算一个岛屿的面积，并将其标记为mark
+    public int dfs(int[][] grid, int row, int col, int mark) {
+        int ans = 0; //初始化面积为0
+        grid[row][col] = mark; //将当前位置标记为mark
+        //遍历四个方向
+        for (int[] current: position) {
+            int curRow = row + current[0], curCol = col + current[1]; //计算相邻位置的坐标
+            //如果坐标越界或者不是陆地，跳过
+            if (curRow < 0 || curRow >= grid.length || curCol < 0 || curCol >= grid.length) continue;
+            //如果是陆地，递归调用dfs，并累加面积
+            if (grid[curRow][curCol] == 1)
+                ans += 1 + dfs(grid, curRow, curCol, mark);
+        }
+        return ans; //返回面积
+    }
+
+    //给定一个二维网格，每个格子是陆地（值为1）或水域（值为0），返回最大的岛屿面积
+    public int largestIsland(int[][] grid) {
+        int ans = Integer.MIN_VALUE, size = grid.length, mark = 2; //初始化答案为最小值，网格大小，和岛屿标记
+        Map<Integer, Integer> getSize = new HashMap<>(); //创建一个哈希表，存储每个标记对应的岛屿面积
+        //遍历网格中的每个格子
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                //如果是陆地，调用dfs计算岛屿面积，并将其存入哈希表
+                if (grid[row][col] == 1) {
+                    int areaSize = 1 + dfs(grid, row, col, mark);
+                    getSize.put(mark++, areaSize);
+                }
+            }
+        }
+        //再次遍历网格中的每个格子
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                //如果是水域，尝试将其变为陆地，并计算新的岛屿面积
+                if (grid[row][col] == 0) {
+                    Set<Integer> hashSet = new HashSet<>(); //创建一个哈希集合，存储相邻的岛屿标记
+                    int curSize = 1; //初始化当前面积为1
+                    //遍历四个方向
+                    for (int[] current: position) {
+                        int curRow = row + current[0], curCol = col + current[1]; //计算相邻位置的坐标
+                        //如果坐标越界，跳过
+                        if (curRow < 0 || curRow >= grid.length || curCol < 0 || curCol >= grid.length) continue;
+                        int curMark = grid[curRow][curCol]; //获取相邻位置的标记
+                        //如果标记已经在哈希集合中，或者不在哈希表中，跳过
+                        if (hashSet.contains(curMark) || !getSize.containsKey(curMark)) continue;
+                        hashSet.add(curMark); //将标记加入哈希集合
+                        curSize += getSize.get(curMark); //累加相邻岛屿的面积
+                    }
+                    ans = Math.max(ans, curSize); //更新最大面积
+                }
+            }
+        }
+        //如果最大面积仍为最小值，说明网格中没有水域，返回网格的总大小；否则返回最大面积
+        return ans == Integer.MIN_VALUE ? size * size : ans;
+    }
+}
+
+```
 
 
 
