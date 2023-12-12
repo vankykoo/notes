@@ -896,11 +896,60 @@ public int ladderLength(String beginWord, String endWord, List<String> wordList)
 
 
 
+
+
+## 十二、钥匙和房间
+
+### 题目
+
+![007.png (849×1159) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/007.png)
+
+### 思路
+
+* 通过**深度优先搜索**遍历房间，通过递归调用`dfs`函数。
+* 在`dfs`函数中，首先将当前房间标记为已访问，然后遍历当前房间的钥匙列表，如果相邻的房间未访问，则递归调用`dfs`函数进行访问。
+* 在主函数中，遍历标记数组，如果存在未访问的房间，则返回false，否则返回true。
+
+
+
+### 代码
+
 ```java
+class Solution {
+    // 用于标记房间是否被访问过
+    boolean[] checked;
 
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        // 初始化标记数组
+        checked = new boolean[rooms.size()];
+
+        // 从0号房间开始进行深度优先搜索
+        dfs(rooms, rooms.get(0), 0);
+
+        // 检查所有房间是否都被访问过
+        for (boolean isChecked : checked) {
+            if (!isChecked) {
+                return false; // 存在未访问的房间，返回false
+            }
+        }
+        return true; // 所有房间都被访问过，返回true
+    }
+
+    // 深度优先搜索函数
+    public void dfs(List<List<Integer>> rooms, List<Integer> keys, int index) {
+        // 将当前房间标记为已访问
+        checked[index] = true;
+
+        // 遍历当前房间的钥匙列表
+        for (Integer key : keys) {
+            if (!checked[key]) {
+                // 如果相邻的房间未访问，则递归调用DFS进行访问
+                dfs(rooms, rooms.get(key), key);
+            }
+        }
+    }
+}
 ```
-
-
 
 
 
