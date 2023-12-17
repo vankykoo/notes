@@ -953,29 +953,505 @@ class Solution {
 
 
 
+##十三、岛屿的周长
+
+### 题目
+
+![009.png (856×1336) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/009.png)
+
+
+
+### 思路
+
+1. 初始化变量：m 和 n 分别为网格的行数和列数，checked 数组用于标记已访问过的节点，dir 数组表示四个方向（上、下、左、右），sum 记录岛屿的周长。
+2. 遍历整个网格，找到所有未被访问过的陆地节点，并从这些节点开始进行深度优先搜索（DFS）。
+3. 在 DFS 过程中，遇到边界或水时，增加 sum 的值；遇到陆地时，继续递归搜索其相邻节点。
+4. 最后返回 sum 的值作为岛屿的周长。
+
+
+
+### 代码
+
+```java
+class Solution {
+    // 用于标记已访问的格子
+    boolean[][] checked;
+    // 方向数组，表示上下左右四个方向
+    int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    // 行数和列数
+    int m, n;
+    // 记录岛屿的周长
+    int sum;
+
+    // 主函数，计算岛屿的周长
+    public int islandPerimeter(int[][] grid) {
+        m = grid.length;
+        n = grid[0].length;
+        checked = new boolean[m][n];
+
+        sum = 0;
+
+        // 遍历整个二维数组
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // 如果当前格子未被访问且是岛屿的一部分
+                if (!checked[i][j] && grid[i][j] == 1) {
+                    // 深度优先搜索
+                    dfs(grid, i, j);
+                }
+            }
+        }
+
+        // 返回岛屿的周长
+        return sum;
+    }
+
+    // 深度优先搜索函数
+    public void dfs(int[][] grid, int x, int y) {
+        // 如果当前格子已经访问过或者是海洋（值为0）
+        if (checked[x][y] || grid[x][y] == 0) {
+            return;
+        }
+
+        // 标记当前格子已访问
+        checked[x][y] = true;
+
+        // 遍历四个方向
+        for (int i = 0; i < 4; i++) {
+            int nextX = x + dir[i][0];
+            int nextY = y + dir[i][1];
+
+            // 如果越界，周长加一
+            if (nextX < 0 || nextX >= m || nextY < 0 || nextY >= n) {
+                sum++;
+                continue;
+            }
+
+            // 如果相邻格子是海洋，周长加一
+            if (grid[nextX][nextY] == 0) {
+                sum++;
+            }
+
+            // 递归搜索相邻的岛屿格子
+            dfs(grid, nextX, nextY);
+        }
+    }
+}
+
+```
 
 
 
 
 
+## 十四、并查集基础
+
+### 1）介绍
+
+并查集（Disjoint-Set Data Structure 或者 Union-Find Algorithm）是一种数据结构，它用来表示一组对象的部分划分情况，并且支持两种操作：**Find** 和 **Union**。这个名字很好地概括了它的功能：
+
+- **Find**：查询元素所在集合的标识符。
+- **Union**：合并两个已知所属集合的元素。
+
+这个数据结构的关键在于能够有效地维护这些操作，并在面对大量插入、删除和查找的情况下保持高效。
+
+####	1.并查集的基本原理
+
+并查集的核心是一个森林，即一组树的集合，每个树代表一个独立的集合。每个节点包含一个指向其父节点的指针，这使得我们可以跟踪元素之间的层级关系。如果两个节点在同一棵树中，则它们属于同一个集合。如果不在同一棵树中，则它们分别属于不同的集合。
+
+####	2.查找（Find）操作
+
+`Find` 操作的目标是找到某个元素所处集合的“根”节点。我们通过沿着从当前节点到根节点的路径上的指针逐步向上移动来实现这一点。为了提高效率，在每次查找过程中都会更新沿途节点的父节点为找到的根节点，这样下一次查找就可以更快地到达根节点，这就是路径压缩（Path Compression）技术。
+
+#### 	3.合并（Union）操作
+
+当需要将两个元素加入到同一个集合中时，就需要执行 `Union` 操作。这是通过简单地将一棵树的根节点链接到另一棵树的根节点来完成的。为了保证将来查找操作的有效性，通常会选择较矮的那棵树作为子树连接到较高的那棵树上，这样可以尽量保持树的平衡，减少查找的时间复杂度。
+
+####	4.并查集的应用
+
+并查集广泛应用于各种需要动态维护集合关系的场景，例如社交网络中的朋友关系、图论中的连通性问题、网络路由等。在实际应用中，由于采用了路径压缩和按秩合并的优化策略，使得并查集即使在处理大规模数据时也能保持极高的效率。
+
+
+
+### 2）示例
+
+以下是一个简单的Java代码示例，演示了并查集的基本实现。该示例使用路径压缩和按秩合并（rank）优化，以提高性能。
+
+```java
+class UnionFind {
+    private int[] parent;
+    private int[] rank;
+
+    public UnionFind(int size) {
+        parent = new int[size];
+        rank = new int[size];
+
+        // 初始化，每个元素自成一组
+        for (int i = 0; i < size; i++) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    }
+
+    public int find(int x) {
+        // 查找元素x所属的集合的代表元素，并进行路径压缩
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    }
+
+    public void union(int x, int y) {
+        // 将元素x所属的集合和元素y所属的集合合并，使用按秩合并进行优化
+        int rootX = find(x);
+        int rootY = find(y);
+
+        if (rootX != rootY) {
+            if (rank[rootX] < rank[rootY]) {
+                parent[rootX] = rootY;
+            } else if (rank[rootX] > rank[rootY]) {
+                parent[rootY] = rootX;
+            } else {
+                parent[rootX] = rootY;
+                rank[rootY]++;
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 6; // 元素个数
+
+        UnionFind uf = new UnionFind(n);
+
+        // 合并一些集合
+        uf.union(0, 1);
+        uf.union(1, 2);
+        uf.union(2, 3);
+
+        // 查找集合的代表元素
+        System.out.println(uf.find(3)); // 输出 0，因为元素 0 是集合 {0, 1, 2, 3} 的代表元素
+        System.out.println(uf.find(4)); // 输出 4，因为元素 4 自成一组
+
+        // 合并新的集合
+        uf.union(4, 5);
+
+        // 查找集合的代表元素
+        System.out.println(uf.find(5)); // 输出 4，因为元素 4 是集合 {4, 5} 的代表元素
+    }
+}
+```
+
+这个Java代码示例展示了并查集的基本操作，包括初始化、查找和合并。这是一个通用的实现，可以根据具体问题进行适当的调整和扩展。
+
+
+
+## 十五、寻找图中是否存在路径
+
+### 题目
+
+![012.png (848×1550) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/012.png)
+
+
+
+### 思路
+
+1. **初始化并查集：** 在构造函数中，你首先初始化了每个节点的父节点和秩。每个节点最初都是其自身的父节点，秩初始化为 0。
+
+2. **边的合并：** 通过遍历给定的边数组 `edges`，对每一条边进行合并操作，调用 `union` 方法。在这个方法中，你找到每个节点所在的集合的根节点，并根据秩的比较决定如何合并。
+
+3. **查找根节点：** 通过 `find` 方法，你实现了路径压缩，即将节点到根节点的路径上的所有节点的父节点直接设为根节点。这有助于加速后续的查找操作。
+
+4. **合并操作：** 在 `union` 方法中，你通过比较节点所在树的秩，将秩较小的树合并到秩较大的树上。如果秩相等，随意选择一个树作为父节点，并增加其秩。
+
+5. **最终判断路径是否连通：** 在 `validPath` 方法中，你查找源节点和目标节点的父节点，然后判断它们是否相同，以确定是否存在一条有效路径。
+
+
+
+
+### 代码
+
+```java
+class Solution {
+    // 用于存储每个节点的父节点
+    private int[] parent;   
+    // 用于记录每个节点的秩（rank），在合并时用于优化
+    private int[] rank;
+
+    // 判断是否存在一条有效路径
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        // 初始化并查集
+        parent = new int[n];
+        rank = new int[n];
+
+        // 初始化每个节点的父节点和秩
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+
+        // 遍历边，进行合并操作
+        for(int i = 0; i < edges.length; i++){
+            union(edges[i]);
+        }
+        
+        // 查找源节点和目标节点的父节点
+        int sourceFather = find(source);
+        int destinationFather = find(destination);
+
+        // 判断源节点和目标节点是否在同一个集合中
+        return sourceFather == destinationFather;
+    }
+
+    // 查找节点 x 的根节点（代表）
+    public int find(int x) {
+        // 路径压缩：将节点 x 到根节点的路径上的所有节点的父节点直接设为根节点，减少后续查找的时间
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    }
+
+    // 合并两个节点所在的集合
+    public void union(int[] edge) {
+        int rootX = find(edge[0]);
+        int rootY = find(edge[1]);
+
+        if (rootX != rootY) {
+            // 按秩合并：将秩较小的树合并到秩较大的树上，以保持树的平衡
+            if (rank[rootX] < rank[rootY]) {
+                parent[rootX] = rootY;
+            } else if (rank[rootX] > rank[rootY]) {
+                parent[rootY] = rootX;
+            } else {
+                // 秩相等时，随便合并一个并增加其秩
+                parent[rootX] = rootY;
+                rank[rootY]++;
+            }
+        }
+    }
+}
+```
 
 
 
 
 
+## 十六、冗余连接
+
+### 题目
+
+![013.png (825×1438) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/013.png)
+
+
+
+### 思路
+
+并查集会将遍历过的结点生成为一棵树，这道题中，如果树中已经有当前路径的两个结点，那么就返回这个路径即可。
+
+
+
+### 代码
+
+```java
+class Solution {
+    // 用于存储每个节点的父节点
+    private int[] parent;   
+    // 用于记录每个节点的秩（rank），在合并时用于优化
+    private int[] rank;
+
+    // 主函数，解决力扣第684题
+    public int[] findRedundantConnection(int[][] edges) {
+        int n = edges.length * 2;
+        // 初始化并查集
+        parent = new int[n];
+        rank = new int[n];
+
+        // 初始化每个节点的父节点和秩
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+
+        // 遍历边，进行合并操作
+        for (int i = 0; i < edges.length; i++) {
+            // 判断是否已经添加过，且在同一棵树上
+            if (find(edges[i][0]) == find(edges[i][1])) {
+                return new int[]{edges[i][0], edges[i][1]};
+            } else {
+                union(edges[i]);
+            }
+        }
+
+        return null;
+    }
+
+    // 查找节点 x 的根节点（代表）
+    public int find(int x) {
+        // 路径压缩：将节点 x 到根节点的路径上的所有节点的父节点直接设为根节点，减少后续查找的时间
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);
+        }
+        return parent[x];
+    }
+
+    // 合并两个节点所在的集合
+    public void union(int[] edge) {
+        int rootX = find(edge[0]);
+        int rootY = find(edge[1]);
+
+        if (rootX != rootY) {
+            // 按秩合并：将秩较小的树合并到秩较大的树上，以保持树的平衡
+            if (rank[rootX] < rank[rootY]) {
+                parent[rootX] = rootY;
+            } else if (rank[rootX] > rank[rootY]) {
+                parent[rootY] = rootX;
+            } else {
+                // 秩相等时，随便合并一个并增加其秩
+                parent[rootX] = rootY;
+                rank[rootY]++;
+            }
+        }
+    }
+}
+```
 
 
 
 
 
+## 十七、冗余连接Ⅱ
+
+### 题目
+
+![015.png (877×1787) (raw.githubusercontent.com)](https://raw.githubusercontent.com/vankykoo/image/main/pic/015.png)
+
+### 思路
+
+前面的步骤和之前一样【构建并查集】，这里多了几个方法：
+
+1. **找到图中的多余边：**
+   - `getRemoveEdge(int[][] edges)` 方法用于找到图中的多余边。它遍历边数组，如果两个节点已经在同一连通分量中，则返回这条边；否则，将这两个节点合并到同一连通分量中。
+2. **判断删除一条边后是否形成树：**
+   - `isTreeAfterRemoveEdge(int[][] edges, int deleteEdge)` 方法用于判断删除一条边后是否形成树。它先初始化父节点数组，然后遍历边数组，如果两个节点已经在同一连通分量中，则说明形成环，返回 `false`；否则，将这两个节点合并到同一连通分量中。最终，如果没有形成环，则返回 `true`。
+   - 这个方法和上一题的类似
+3. **找到入度为2的节点：**
+   - 在 `findRedundantDirectedConnection(int[][] edges)` 方法中，维护了一个入度数组 `inDegree`，用于统计每个节点的入度。
+   - 遍历边数组，找到入度为2的节点，并将其记录在 `twoDegree` 列表中。
+4. **判断入度为2的节点删除一条边后是否形成树：**
+   - 如果 `twoDegree` 列表不为空，分别判断删除其中一条边后是否形成树，如果是，则返回该边；否则，返回另一条边。
+5. **如果没有入度为2的节点，直接找到多余的边：**
+   - 如果 `twoDegree` 列表为空，则调用 `getRemoveEdge(edges)` 方法找到图中的多余边。
 
 
 
+总结：找到入度为2的节点，并记录这两条边，把这些边放到一个数组/集合里，按原来edges的顺序放，然后从后向前遍历这些边，如果删除这个边能构成树，那么就是结果了。
 
+### 代码
 
+```java
+public class Solution {
 
+    private static final int N = 1010;
+    private int[] father;
 
+    // 构造函数，初始化并查集的父节点数组
+    public Solution() {
+        father = new int[N];
 
+        for (int i = 0; i < N; ++i) {
+            father[i] = i;
+        }
+    }
+
+    // 查找节点的根节点，实现路径压缩
+    private int find(int u) {
+        if (u == father[u]) {
+            return u;
+        }
+        father[u] = find(father[u]);
+        return father[u];
+    }
+
+    // 合并两个节点所在的连通分量
+    private void join(int u, int v) {
+        u = find(u);
+        v = find(v);
+        if (u == v) return;
+        father[v] = u;
+    }
+
+    // 判断两个节点是否在同一连通分量
+    private Boolean same(int u, int v) {
+        u = find(u);
+        v = find(v);
+        return u == v;
+    }
+
+    // 初始化并查集的父节点数组
+    private void initFather() {
+        for (int i = 0; i < N; ++i) {
+            father[i] = i;
+        }
+    }
+
+    // 找到图中的多余边
+    private int[] getRemoveEdge(int[][] edges) {
+        initFather();
+        for (int i = 0; i < edges.length; i++) {
+            if (same(edges[i][0], edges[i][1])) {
+                return edges[i];
+            }
+            join(edges[i][0], edges[i][1]);
+        }
+        return null;
+    }
+
+    // 判断删除一条边后是否形成树
+    private Boolean isTreeAfterRemoveEdge(int[][] edges, int deleteEdge) {
+        initFather();
+        for (int i = 0; i < edges.length; i++) {
+            if (i == deleteEdge) continue;
+            if (same(edges[i][0], edges[i][1])) {
+                return false;
+            }
+            join(edges[i][0], edges[i][1]);
+        }
+        return true;
+    }
+
+    // 找到图中的多余有向边
+    public int[] findRedundantDirectedConnection(int[][] edges) {
+        int[] inDegree = new int[N];
+        for (int i = 0; i < edges.length; i++) {
+            // 统计每个节点的入度
+            inDegree[edges[i][1]] += 1;
+        }
+
+        // 存储入度为2的节点
+        ArrayList<Integer> twoDegree = new ArrayList<Integer>();
+        for (int i = edges.length - 1; i >= 0; i--) {
+            // 找到入度为2的节点
+            if (inDegree[edges[i][1]] == 2) {
+                twoDegree.add(i);
+            }
+        }
+
+        if (!twoDegree.isEmpty()) {
+            // 如果删除其中一条边后形成树，则返回这条边
+            if (isTreeAfterRemoveEdge(edges, twoDegree.get(0))) {
+                return edges[twoDegree.get(0)];
+            }
+            // 否则返回另一条边
+            return edges[twoDegree.get(1)];
+        }
+
+        // 否则，返回多余的边
+        return getRemoveEdge(edges);
+    }
+}
+```
 
 
 
