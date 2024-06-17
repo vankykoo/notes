@@ -21,43 +21,6 @@
 | Object Header (Mark Word + Class Metadata Address) | Instance Data (Fields) | Padding |
 ```
 
-### 示例
-
-假设我们有一个简单的Java类如下：
-
-```java
-public class Example {
-    int a;       // 4 bytes
-    long b;      // 8 bytes
-    byte c;      // 1 byte
-}
-```
-
-在默认情况下（未考虑压缩指针的情况下），对象的内存布局可能如下：
-
-1. **Object Header**：
-   - Mark Word：8字节
-   - Class Metadata Address：8字节
-     共16字节。
-
-2. **Instance Data**：
-   - `int a`：4字节
-   - `long b`：8字节
-   - `byte c`：1字节
-     为了对齐，下一个字段将从8的倍数位置开始，因此需要填充7字节。
-     共20字节（4+8+1+7）。
-
-3. **Padding**：
-   由于对象头加上实例数据已经是36字节，符合8字节的对齐要求，因此不需要额外的填充。
-
-最终对象的内存布局为：
-
-```
-| Mark Word (8 bytes) | Class Metadata Address (8 bytes) | int a (4 bytes) | long b (8 bytes) | byte c (1 byte) | Padding (7 bytes) |
-```
-
-因此，这个对象在JVM中的内存占用是36字节。需要注意的是，不同JVM实现以及不同配置（如启用压缩指针）可能会对具体的内存布局产生影响。
-
 ### 内存布局总结
 
 - **对象头**：包含Mark Word和类元数据指针，占用固定大小。
