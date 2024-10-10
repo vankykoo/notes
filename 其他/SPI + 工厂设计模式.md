@@ -36,7 +36,7 @@ SPI（Service Provider Interface）是Java提供的一种用于实现可扩展�
 
 ### 1. 配置文件 
 
-![img](https://cdn.nlark.com/yuque/0/2024/png/38627688/1728552030923-36dcd96e-fbc9-4bd9-980b-a7c20e29a53c.png)
+![img](https://raw.githubusercontent.com/vankykoo/image/refs/heads/main/cut/014.png)
 
 com.vanky.myrpc.loadbalancer.LoadBalancer：
 
@@ -180,7 +180,7 @@ public class SpiLoader {
 
 ### 3. 配合工厂模式，获取实例
 
-![img](https://cdn.nlark.com/yuque/0/2024/png/38627688/1728552349664-44045a82-586f-48dd-a888-3f5b75142ee2.png)
+![img](https://raw.githubusercontent.com/vankykoo/image/refs/heads/main/cut/015.png)
 
 ```java
 /**
